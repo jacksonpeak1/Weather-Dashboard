@@ -11,56 +11,56 @@ $(document).ready(function () {
 
     //show the weather data
     getCurrentWeather(userInput);
-    getForecastData(userInput);
+    // getForecastData(userInput);
 
     //create the a new button
   });
 
   //get the weather current data
-  function getForecastData(cityName) {
-    var settings = {
-      url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`,
-      method: "GET",
-      timeout: 0,
-    };
+  // function getForecastData(cityName) {
+  //   var settings = {
+  //     url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`,
+  //     method: "GET",
+  //     timeout: 0,
+  //   };
 
-    $.ajax(settings).done(function (response) {
-      //do stuff with the data
+  //   $.ajax(settings).done(function (response) {
+  //     //do stuff with the data
 
-      // <p id="uv">UV Index: <span class="btn btn-sm btn-danger">6.33</span></p>
+  //     // <p id="uv">UV Index: <span class="btn btn-sm btn-danger">6.33</span></p>
 
-      console.log("response forecast:", response);
+  //     console.log("response forecast:", response);
 
-      //create the current weather card
-      let currentWeatherCard = "";
+  //     //create the current weather card
+  //     let currentWeatherCard = "";
 
-      for (let i = 0; i < response.list.length; i++) {
-        if (response.list[i].dt_text.indexOf("9:00:00") > -1) {
-          currentWeatherCard += `
-            <div class="col-md-2">
-              <div class="card bg-primary text-white">
-                <div class="card-body p-2">
-                  <h5 class="card-title">${new Date(
-                    response.list[i].dt_text
-                  ).toLocaleDateString()}</h5>
-                  <img src="http://openweathermap.org/img/w/01d.png">
-                  <p class="card-text">Wind Speed: ${
-                    response.list[i].wind.speed
-                  } MPH</p>
-                  <p class="card-text">Humidity : 82 %</p>
-                  <p class="card-text">Temp: 20.12 °F</p>
-                  <p class="card-text">Humidity: 82%</p>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-      }
+  //     for (let i = 0; i < response.list.length; i++) {
+  //       if (response.list[i].dt_text.indexOf("9:00:00") > -1) {
+  //         currentWeatherCard += `
+  //           <div class="col-md-2">
+  //             <div class="card bg-primary text-white">
+  //               <div class="card-body p-2">
+  //                 <h5 class="card-title">${new Date(
+  //                   response.list[i].dt_text
+  //                 ).toLocaleDateString()}</h5>
+  //                 <img src="http://openweathermap.org/img/w/01d.png">
+  //                 <p class="card-text">Wind Speed: ${
+  //                   response.list[i].wind.speed
+  //                 } MPH</p>
+  //                 <p class="card-text">Humidity : 82 %</p>
+  //                 <p class="card-text">Temp: 20.12 °F</p>
+  //                 <p class="card-text">Humidity: 82%</p>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         `;
+  //       }
+  //     }
 
-      //show the current weather card
-      $("#today").html(currentWeatherCard);
-    });
-  }
+  //     //show the current weather card
+  //     $("#today").html(currentWeatherCard);
+  //   });
+  // }
 
   //get the weather current data
   function getCurrentWeather(cityName) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
       //create the current weather card
       const currentWeatherCard = `
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" id="current-weather-body">
             <h3 class="card-title">
               ${response.name} (${new Date().toLocaleDateString()})
               <img src="http://openweathermap.org/img/w/${
@@ -89,13 +89,32 @@ $(document).ready(function () {
             </h3>
             <p class="card-text">Temperature: ${response.main.temp} °F</p>
             <p class="card-text">Humidity: ${response.main.humidity} %</p>
-            <p class="card-text"> Wind-Speed: ${response.wind} mph</p>
+            <p class="card-text"> Wind-Speed: ${response.wind.speed} mph</p>
           </div>
         </div>
       `;
 
       //show the current weather card
       $("#today").html(currentWeatherCard);
+
+      var latitude = response.coord.lat;
+      var longitude = response.coord.lon;
+
+      var settings2 = {
+        url: `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,hourly&appid=${apiKey}&units=imperial`,
+        method: "GET",
+        timeout: 0,
+      };
+
+      $.ajax(settings2).done(function (response) {
+        console.log(response);
+        var currentWeatherBody = document.getElementById(
+          "current-weather-body"
+        );
+        var uvi = document.createElement("p");
+        uvi.innerHTML = `UV Index: ${response.current.uvi}`;
+        currentWeatherBody.append(uvi);
+      });
     });
   }
 });
