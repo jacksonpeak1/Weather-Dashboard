@@ -3,4 +3,14 @@
     font-size: 50px;
     text-align:center;
 }
+
+#forecast {
+    display:flex;
+    flex-wrap: wrap;
+}
   
+.forecast-card {
+    margin:1em;
+    border:1px solid blue;
+    padding:1em;
+}

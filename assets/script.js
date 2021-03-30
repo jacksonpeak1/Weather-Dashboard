@@ -1,5 +1,6 @@
 $(document).ready(function () {
   const apiKey = "10a522f9d8216f7c5d46d3a3132e73b0";
+  const forecastDiv = $("#forecast");
 
   //add event search btn
   $("#search-btn").on("click", function (event) {
@@ -15,52 +16,6 @@ $(document).ready(function () {
 
     //create the a new button
   });
-
-  //get the weather current data
-  // function getForecastData(cityName) {
-  //   var settings = {
-  //     url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`,
-  //     method: "GET",
-  //     timeout: 0,
-  //   };
-
-  //   $.ajax(settings).done(function (response) {
-  //     //do stuff with the data
-
-  //     // <p id="uv">UV Index: <span class="btn btn-sm btn-danger">6.33</span></p>
-
-  //     console.log("response forecast:", response);
-
-  //     //create the current weather card
-  //     let currentWeatherCard = "";
-
-  //     for (let i = 0; i < response.list.length; i++) {
-  //       if (response.list[i].dt_text.indexOf("9:00:00") > -1) {
-  //         currentWeatherCard += `
-  //           <div class="col-md-2">
-  //             <div class="card bg-primary text-white">
-  //               <div class="card-body p-2">
-  //                 <h5 class="card-title">${new Date(
-  //                   response.list[i].dt_text
-  //                 ).toLocaleDateString()}</h5>
-  //                 <img src="http://openweathermap.org/img/w/01d.png">
-  //                 <p class="card-text">Wind Speed: ${
-  //                   response.list[i].wind.speed
-  //                 } MPH</p>
-  //                 <p class="card-text">Humidity : 82 %</p>
-  //                 <p class="card-text">Temp: 20.12 °F</p>
-  //                 <p class="card-text">Humidity: 82%</p>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         `;
-  //       }
-  //     }
-
-  //     //show the current weather card
-  //     $("#today").html(currentWeatherCard);
-  //   });
-  // }
 
   //get the weather current data
   function getCurrentWeather(cityName) {
@@ -114,6 +69,25 @@ $(document).ready(function () {
         var uvi = document.createElement("p");
         uvi.innerHTML = `UV Index: ${response.current.uvi}`;
         currentWeatherBody.append(uvi);
+
+        // Display Forecast Data
+        forecastDiv.html("");
+        for (let i = 1; i <= 5; i++) {
+          var unixSeconds = response.daily[i].dt;
+          var unixMilliseconds = unixSeconds * 1000;
+          var forecastDateUnix = new Date(unixMilliseconds);
+          var forecastDoW = forecastDateUnix.toLocaleString("en-US", {
+            weekday: "long",
+          });
+          var forecastCard = document.createElement("div");
+          forecastCard.classList.add("forecast-card");
+          forecastCard.innerHTML = `<h3>${forecastDoW}</h3>
+          <p>Temperature: ${response.daily[i].temp.day} °F</p>
+          <p>Humidity: ${response.daily[i].humidity} %</p>
+          <img src="http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}.png">`;
+  
+          forecastDiv.append(forecastCard);
+        }
       });
     });
   }
