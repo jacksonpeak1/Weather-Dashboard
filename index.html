@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body class="app sidebar-show aside-menu-show">
+      <h1 class="h1-weather">Weather Dashboard</h1>
+      <main class="container fluid">
+          <div class="row">
+              <aside class="col-sm-3">
+                  <form id="search-form">
+                      <div class="form-group">
+                          <input type="text" class="form-control id=search-term" id="userInput"/>
+                      </div>
+                      <button type="submit" class="btn btn-primary" id="search-btn">Search</button>
+                  </form>
+                  <div class="city-button-container">
+                    <!-- city buttons go here -->
+                  </div>
+              </aside>
+              <main>
+                  <div id="today">
+                      <!-- current weather data goes here -->
+                  </div>
+                  <div id="forecast">
+                      <!-- forecast data does here -->
+                  </div>
+              </main>
+              <!-- <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th class="city" scope="col"></th>
+                    <th class="date"></th>
+                    <img class="icon" scope="col"></img>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Temperature</th>
+                    <td class="temp"></td>
+            
+                  </tr>
+                  <tr>
+                    <th scope="row">Humidity</th>
+                    <td class="humidity"></td>
+            
+                  </tr>
+                  <tr>
+                    <th scope="row">Wind Speed</th>
+                    <td class="windSpeed" colspan="2"></td>
+            
+                  </tr>
+                  <tr>
+                      <th scope="row">UV Index</th>
+                      <td class="uvIndex" colspan="2"></td>
+            
+                  </tr>
+                </tbody>
+              </table>
+              <section class="col-sm-9">
+                  <div class="row" id="images-display">
+                      <img class="col-sm-4" src="" alt="weather"/>
+                      <img class="col-sm-4" src="" alt="weather"/>
+                      <img class="col-sm-4" src="" alt="weather"/>
+                      <img class="col-sm-4" src="" alt="weather"/>
+                      <img class="col-sm-4" src="" alt="weather"/>
+                  </div>
+              </section> -->
+          </div>
+      </main>
+
+  </body>
+  
+
+    <!-- Added link to the jQuery library -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
