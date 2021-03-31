@@ -13,74 +13,29 @@
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Weather Dashboard</title>
   </head>
-  <body class="app sidebar-show aside-menu-show">
-      <h1 class="h1-weather">Weather Dashboard</h1>
-      <main class="container fluid">
-          <div class="row">
-              <aside class="col-sm-3">
-                  <form id="search-form">
-                      <div class="form-group">
-                          <input type="text" class="form-control id=search-term" id="userInput"/>
-                      </div>
-                      <button type="submit" class="btn btn-primary" id="search-btn">Search</button>
-                  </form>
-                  <div class="city-button-container">
-                    <!-- city buttons go here -->
-                  </div>
-              </aside>
-              <main>
-                  <div id="today">
-                      <!-- current weather data goes here -->
-                  </div>
-                  <div id="forecast">
-                      <!-- forecast data does here -->
-                  </div>
-              </main>
-              <!-- <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th class="city" scope="col"></th>
-                    <th class="date"></th>
-                    <img class="icon" scope="col"></img>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Temperature</th>
-                    <td class="temp"></td>
-            
-                  </tr>
-                  <tr>
-                    <th scope="row">Humidity</th>
-                    <td class="humidity"></td>
-            
-                  </tr>
-                  <tr>
-                    <th scope="row">Wind Speed</th>
-                    <td class="windSpeed" colspan="2"></td>
-            
-                  </tr>
-                  <tr>
-                      <th scope="row">UV Index</th>
-                      <td class="uvIndex" colspan="2"></td>
-            
-                  </tr>
-                </tbody>
-              </table>
-              <section class="col-sm-9">
-                  <div class="row" id="images-display">
-                      <img class="col-sm-4" src="" alt="weather"/>
-                      <img class="col-sm-4" src="" alt="weather"/>
-                      <img class="col-sm-4" src="" alt="weather"/>
-                      <img class="col-sm-4" src="" alt="weather"/>
-                      <img class="col-sm-4" src="" alt="weather"/>
-                  </div>
-              </section> -->
+  <body>
+    <h1 class="h1-weather">Weather Dashboard</h1>
+    <main class="row">
+      <div class="col-3">
+        <form id="search-form">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control id=search-term"
+              id="userInput"
+            />
           </div>
-      </main>
-
-  </body>
-  
+          <button type="submit" class="btn btn-primary" id="search-btn">
+            Search
+          </button>
+        </form>
+        <div id="search-history-container">Search History</div>
+      </div>
+      <div class="col-9">
+        <div id="today"></div>
+        <div id="forecast"></div>
+      </div>
+    </main>
 
     <!-- Added link to the jQuery library -->
     <script

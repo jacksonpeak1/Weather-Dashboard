@@ -17,6 +17,11 @@ $(document).ready(function () {
     //create the a new button
   });
 
+  function populateSearchHistory() {
+//read the array out of local storage, loop through it
+
+
+  }
   //get the weather current data
   function getCurrentWeather(cityName) {
     var settings = {
@@ -31,6 +36,22 @@ $(document).ready(function () {
       // <p id="uv">UV Index: <span class="btn btn-sm btn-danger">6.33</span></p>
 
       console.log("response current:", response);
+
+      if (!localStorage.getItem("weatherSearchHistory")) {
+        localStorage.setItem(
+          "weatherSearchHistory",
+          JSON.stringify([response.name])
+        );
+      } else {
+        var historyFromStorage = JSON.parse(
+          localStorage.getItem("weatherSearchHistory")
+        );
+        historyFromStorage.push(response.name);
+        localStorage.setItem(
+          "weatherSearchHistory",
+          JSON.stringify(historyFromStorage)
+        );
+      }
 
       //create the current weather card
       const currentWeatherCard = `
@@ -85,7 +106,7 @@ $(document).ready(function () {
           <p>Temperature: ${response.daily[i].temp.day} °F</p>
           <p>Humidity: ${response.daily[i].humidity} %</p>
           <img src="http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}.png">`;
-  
+
           forecastDiv.append(forecastCard);
         }
       });

@@ -14,3 +14,7 @@
     border:1px solid blue;
     padding:1em;
 }
+
+#search-history-container {
+    margin-bottom:30px;
+}
