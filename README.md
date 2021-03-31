@@ -2,11 +2,9 @@
 
 ## Deployed Site Screenshot
 
-![Portfolio Site]()
+![Weather Dashboard](https://github.com/jacksonpeak1/Weather-Dashboard/blob/main/screencapture-file-C-Users-Jacks-gt-homework-Weather-Dashboard-index-html-2021-03-30-23_34_54.png)
 
---
-
-## Site Link Below
+## Site Link Below 
 
 ## [Deployed Site](https://jacksonpeak1.github.io/Weather-Dashboard/)
 
